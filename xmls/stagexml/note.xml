@@ -1,0 +1,8 @@
+<?xml version="1.0" ?>
+<note xmlns:xsi="http://www.w3c.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="note.xsd">
+    <to>test dest</to>
+    <from>test src</from>
+    <heading>test head</heading>
+    <body>test body</body>
+</note>

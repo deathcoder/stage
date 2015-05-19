@@ -1,0 +1,40 @@
+<biblioteca>
+    <libro isbn="111">
+        <titolo bestof="si">libro 1</titolo>
+        <autori>
+            <autore>autore 1</autore>
+            <autore>autore 2</autore>
+            <autore>autore 3</autore>
+        </autori>
+        <pubblicazione>1995</pubblicazione>
+        <prezzo>12</prezzo>
+    </libro>
+    <libro isbn="114">
+        <titolo bestof="no">libro 4</titolo>
+        <autori>
+            <autore>autore 1</autore>
+        </autori>
+        <pubblicazione>1992</pubblicazione>
+        <prezzo>12</prezzo>
+    </libro>
+    <libro isbn="112">
+        <titolo bestof="si">libro 2</titolo>
+        <autori>
+            <autore>autore 1</autore>
+            <autore>autore 3</autore>
+        </autori>
+        <pubblicazione>2015</pubblicazione>
+        <prezzo>10</prezzo>
+        <serie>serie 1</serie>
+    </libro>
+    <libro isbn="113">
+        <titolo bestof="no">libro 3</titolo>
+        <autori>
+            <autore>autore 4</autore>
+            <autore>autore 5</autore>
+        </autori>
+        <pubblicazione>99</pubblicazione>
+        <prezzo>15</prezzo>
+        <serie>serie 2</serie>
+    </libro>
+</biblioteca>
