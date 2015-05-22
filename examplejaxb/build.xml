@@ -1,0 +1,45 @@
+ 
+<project name="Esempi JAXB" default="generate-schema" basedir=".">
+	<property name="jaxb.home" value="C:/Programmi/jaxb"/>
+	<path id="lib.class.path">
+		<fileset dir="${jaxb.home}/lib">
+			<include name="*.jar" />
+		</fileset>
+	</path>
+	
+	<!-- Defines XJC and SchemaGen tasks -->
+    <taskdef name="xjc" classname="com.sun.tools.xjc.XJCTask">
+        <classpath refid="lib.class.path"/>
+    </taskdef>
+	<taskdef name="schemagen" classname="com.sun.tools.jxc.SchemaGenTask">
+	  <classpath>
+	  	<path refid="lib.class.path" />
+	  </classpath>
+	</taskdef>
+	
+	<target name="generate-schema">
+		 <echo message="Generating schemas..."/>
+		<schemagen destdir="schemagen">
+			<src path="src" />
+			<include name="it/objectway/jaxb/marshalling/Cliente.java"/>
+			<classpath>
+				<path refid="lib.class.path" />
+			</classpath>
+		</schemagen>
+	</target>
+	
+	<target name="compile-schema-catalog">
+        <echo message="Compiling the schema catalog.xsd..."/>
+        <xjc schema="catalog.xsd" destdir="src" package="it.objectway.jaxb.binding" removeOldOutput="yes"/>
+    </target>
+	<target name="compile-schema-group">
+	        <echo message="Compiling the schema group_example.xsd ..."/>
+	        <xjc schema="group_example.xsd" destdir="src" package="it.objectway.jaxb.binding.group" removeOldOutput="yes"/>
+	    </target>
+	<target name="compile-schema-catalog-binding-inline">
+	        <echo message="Compiling the schema catalog_binding_inline.xsd ..."/>
+	        <xjc schema="catalog_binding_inline.xsd" destdir="src" removeOldOutput="yes"/>
+	</target>
+</project>
+
+

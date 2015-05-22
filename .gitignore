@@ -3,4 +3,8 @@
 *.iml
 
 target/
+
 out/
+*.class
+*.jar
+*.war

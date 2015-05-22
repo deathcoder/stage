@@ -1,4 +1,4 @@
-package it.objectway.stage.xml;
+package it.objectway.stage.testxml.xml;
 
 import org.xml.sax.SAXException;
 
@@ -20,11 +20,11 @@ public class XmlValidator {
 		System.out.println(Arrays.asList(f.list()));
 		try {
 			SchemaFactory factory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-			Schema schema = factory.newSchema(new File("stagexml/biblioteca.xsd"));
+			Schema schema = factory.newSchema(new File("stagexml/resources/xml/testxml/biblioteca.xsd"));
 			Validator validator = schema.newValidator();
 			
 			
-			validator.validate(new StreamSource(new FileInputStream(new File("stagexml/biblioteca.xml"))));
+			validator.validate(new StreamSource(new FileInputStream(new File("stagexml/resources/xml/testxml/biblioteca.xml"))));
 			
 			System.out.println("DOCUMENTO VALIDO!!");
 		} catch (SAXException e) {

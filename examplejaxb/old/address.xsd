@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+   xsi:schemaLocation="http://www.w3.org/2001/XMLSchema http://www.nubean.com/schemas/schema.xsd"
+   xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" jaxb:version="2.0">
+   <xs:annotation>
+		<xs:appinfo>
+			<jaxb:schemaBindings>
+				<jaxb:package name="it.objectway.jaxb.address"/>
+			</jaxb:schemaBindings>
+			
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:element name="UsOrCanadaAddress">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="name" type="xs:string"/>
+				<xs:element name="street" type="xs:string"/>
+				<xs:element name="city" type="xs:string"/>
+				<xs:element name="state" type="xs:string"/>
+				<xs:choice>
+					<xs:element name="zip" type="xs:int"/>
+					<xs:element name="postalCode" type="xs:string"/>
+				</xs:choice>
+				<xs:element name="country">
+					<xs:simpleType>
+						<xs:annotation>
+							<xs:appinfo>
+								<jaxb:typesafeEnumClass name="CountryEnum">
+									 	<jaxb:typesafeEnumMember value="United States" name="USA"/>
+										 <jaxb:typesafeEnumMember value="Canada" name="CAN"/>
+								</jaxb:typesafeEnumClass> 
+							</xs:appinfo>
+						</xs:annotation>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="United States"/>
+							<xs:enumeration value="Canada"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

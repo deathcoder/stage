@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--The Dark Side of the Moon, track 13-->
+<song track="13">
+	<artist>
+		<name>Pink Floyd</name>
+	</artist>
+	<title>Eclipse</title>
+	<length>
+		<minutes>4</minutes>
+		<seconds>36</seconds>
+	</length>
+</song>

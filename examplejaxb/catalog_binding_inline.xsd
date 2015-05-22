@@ -1,0 +1,69 @@
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+			xmlns:jxb="http://java.sun.com/xml/ns/jaxb" 
+			jxb:version="2.0">
+	<!-- Inline configuration -->			
+	<xsd:annotation>
+		<xsd:appinfo>
+			<jxb:globalBindings 
+				collectionType="java.util.Vector" 
+				enableFailFastCheck="true" 
+				generateIsSetMethod="false"/>
+			<jxb:schemaBindings>
+				<jxb:package name="it.objectway.jaxb.binding.inline">
+					<jxb:javadoc><![CDATA[<body> Package level documentation for it.objectway.jaxb.binding.inline package </body>]]></jxb:javadoc>
+				</jxb:package>
+				<jxb:nameXmlTransform>
+					<jxb:typeName prefix="AA" suffix="GG"/>
+				</jxb:nameXmlTransform>
+			</jxb:schemaBindings>
+		</xsd:appinfo>
+	</xsd:annotation>			
+ 	<xsd:element name="catalog" type="catalogType"/>
+ 	
+ 	<xsd:complexType name="catalogType">
+ 		<!-- Inline configuration -->
+ 		<xsd:annotation>
+			<xsd:appinfo>
+				<jxb:class name="Catalogo">
+					<jxb:javadoc>Javadoc per catalogo.</jxb:javadoc>
+				</jxb:class>
+			</xsd:appinfo>
+		</xsd:annotation>
+  		<xsd:sequence>
+   			<xsd:element ref="journal"  minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+  		<xsd:attribute name="section" type="xsd:string"/>
+  		<xsd:attribute name="publisher" type="xsd:string"/>
+ 	</xsd:complexType>
+ 
+ 	<xsd:element name="journal" type="journalType"/>
+ 	
+ 	<xsd:complexType name="journalType">
+  		<xsd:sequence>
+   			<xsd:element ref="article"  minOccurs="0" maxOccurs="unbounded"/>
+  		</xsd:sequence>
+ 	</xsd:complexType>
+ 	
+ 	<xsd:element name="article" type="articleType"/>
+
+	<xsd:complexType name="articleType">
+		<xsd:sequence>
+			<xsd:element name="title" type="xsd:string">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<jxb:property name="titolo"/>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="author" type="xsd:string"/>
+		</xsd:sequence>
+		<xsd:attribute name="level" type="xsd:string"/>
+		<xsd:attribute name="date" type="xsd:string">
+			<xsd:annotation>
+				<xsd:appinfo>
+					<jxb:property generateIsSetMethod="true"/>
+				</xsd:appinfo>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
+</xsd:schema>

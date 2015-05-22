@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<cliente-bancario xmlns="http://www.objectway.it/bank" xmlns:ns2="http://www.objectway.it/common">
+    <nome>Paolo</nome>
+    <cognome>Rossi</cognome>
+    <indirizzo stato="Italia">
+        <ns2:cap>909090</ns2:cap>
+        <ns2:citta>Milano</ns2:citta>
+        <ns2:numeroCivico>90</ns2:numeroCivico>
+        <ns2:via>Via Roma</ns2:via>
+    </indirizzo>
+    <data-nascita>13-11-1973</data-nascita>
+    <sesso>M</sesso>
+    <lista-conti>
+        <conto>
+            <numeroConto>123</numeroConto>
+            <saldo>1000.454</saldo>
+        </conto>
+        <conto>
+            <numeroConto>789</numeroConto>
+            <saldo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true">
+            </saldo>
+        </conto>
+    </lista-conti>
+</cliente-bancario>

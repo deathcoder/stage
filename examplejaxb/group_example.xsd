@@ -1,0 +1,44 @@
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+			xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" 
+			jaxb:version="2.0">
+	<!-- Inline configuration -->			
+	<xsd:annotation>
+		<xsd:appinfo>
+			<jaxb:globalBindings>
+				<!-- 
+				<jaxb:javaType name="java.util.Calendar" xmlType="xsd:date"
+	             	parseMethod="javax.xml.bind.DatatypeConverter.parseDate"
+		             printMethod="javax.xml.bind.DatatypeConverter.printDate"/>
+		        -->
+		        <jaxb:javaType name="java.util.Date" xmlType="xsd:date"
+	             	parseMethod="it.objectway.jaxb.common.DateConverter.parseDate"
+		             printMethod="it.objectway.jaxb.common.DateConverter.printDate"/>
+		        
+             </jaxb:globalBindings>
+		</xsd:appinfo>
+	</xsd:annotation>	
+	<xsd:complexType name="A">
+		<xsd:group ref="elemA" />
+		<xsd:attributeGroup ref="attrsA" />
+	</xsd:complexType>
+	
+	<xsd:group name="elemA" >
+	<xsd:sequence>
+		<xsd:element name="B" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+		<xsd:element name="C" type="xsd:string" minOccurs="0"/>
+	</xsd:sequence>
+	</xsd:group>
+	<xsd:attributeGroup name="attrsA">
+		<xsd:attribute name="p" type="xsd:string" />
+		<xsd:attribute name="q" type="xsd:string" />
+	</xsd:attributeGroup>
+	
+	<xsd:element name="D">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="d-element" type="A" minOccurs="10" maxOccurs="unbounded"/>
+				<xsd:element name="data-1" type="xsd:date"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>

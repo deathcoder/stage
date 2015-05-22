@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" xmlns:ns1="http://www.objectway.it/common" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:import namespace="http://www.objectway.it/common" schemaLocation="schema1.xsd"/>
+
+  <xs:complexType name="cliente">
+    <xs:sequence>
+      <xs:element name="nome" type="xs:string" minOccurs="0"/>
+      <xs:element name="cognome" type="xs:string" minOccurs="0"/>
+      <xs:element name="indirizzo" type="ns1:indirizzo" minOccurs="0"/>
+      <xs:element name="data-nascita" type="xs:string" minOccurs="0"/>
+      <xs:element name="sesso" type="sesso" minOccurs="0"/>
+      <xs:element name="lista-conti" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="conto" type="conto" maxOccurs="unbounded" minOccurs="0"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="tipoCliente" type="tipoCliente" minOccurs="0"/>
+      <xs:element name="ultimePassword">
+        <xs:simpleType>
+          <xs:list itemType="xs:string"/>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="conto">
+    <xs:sequence>
+      <xs:element name="numeroConto" type="xs:string" minOccurs="0"/>
+      <xs:element name="saldo" type="xs:float" nillable="true" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:simpleType name="tipoCliente">
+    <xs:restriction base="xs:string"/>
+  </xs:simpleType>
+
+  <xs:simpleType name="sesso">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="F"/>
+      <xs:enumeration value="M"/>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>
+
