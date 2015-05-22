@@ -39,6 +39,18 @@ public class DataBaseManagerImpl implements DataBaseManager {
         }
     }
 
+    public int getCount() {
+        return 1;
+    }
+
+    public boolean updateFile(FileModel file) {
+        return true;
+    }
+
+    public FileModel deleteFile(String absPath) {
+        return null;
+    }
+
     private Statement getStatement() {
         logger.trace("getStatement: start");
         try {
@@ -50,7 +62,7 @@ public class DataBaseManagerImpl implements DataBaseManager {
         return null;
     }
 
-    public int insertFile(FileModel fileModel) {
+    public boolean insertFile(FileModel fileModel) {
         logger.trace("insertFile: start");
         PreparedStatement insert = getPreparedStatement(PREPAREDFILEINSERT);
         try {
@@ -70,19 +82,18 @@ public class DataBaseManagerImpl implements DataBaseManager {
         } catch(MySQLIntegrityConstraintViolationException e) {
             logger.debug("insertFile: catched IntegrityException, assuming it's a duplicate entry for primary key");
             logger.trace("insertFile: integrityException reason: ", e.getMessage());
-            return 0;
+            return false;
         } catch (SQLException e) {
             logger.error("insertFile: Failed to create file: ", insert);
             e.printStackTrace();
-            return 0;
+            return false;
         }
         if(result == 1) {
             logger.trace("insertFile: Created file(row count: ", result, "): ", insert);
+            return true;
         }
-        else {
-            logger.trace("insertFile: file already exists: ", fileModel.getAbsolutePath());
-        }
-        return result;
+        logger.trace("insertFile: file already exists: ", fileModel.getAbsolutePath());
+        return false;
     }
 
     private static PreparedStatement getPreparedStatement(String preparedStatement) {

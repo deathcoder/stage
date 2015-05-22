@@ -6,9 +6,15 @@ import it.objectway.corsi.fssurfer.models.FileModel;
  * Created by stageusr2015 on 18/05/2015.
  */
 public interface DataBaseManager {
-    int insertFile(FileModel fileModel);
+    boolean insertFile(FileModel fileModel);
 
     void execute(Runnable command);
 
     void clean();
+
+    int getCount();
+
+    boolean updateFile(FileModel file);
+
+    FileModel deleteFile(String absPath);
 }
