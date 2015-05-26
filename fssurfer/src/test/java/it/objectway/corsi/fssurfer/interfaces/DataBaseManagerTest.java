@@ -115,6 +115,38 @@ public class DataBaseManagerTest extends DBTestCase {
         }
     }
 
+    public void testInsertFileNoMock() throws Exception {
+        logger.trace("testInsertFile: start");
+        FileModel test = new FileModel(
+                "testme.xml", FileType.FILE, ".test",
+                "rwx", 10, "C:\\test.xml"
+        );
+
+        DataBaseManager dataBaseManager = new DataBaseManagerImpl();
+        dataBaseManager.setConnection(getJdbcConnection());
+
+        dataBaseManager.insertFile(test);
+        // Fetch database data after executing your code
+        IDataSet databaseDataSet = getConnection().createDataSet();
+        ITable actualTable = new SortedTable(databaseDataSet.getTable("files"));
+
+        IDataSet expected = null;
+        try {
+            expected = new FlatXmlDataSetBuilder().build(new FileInputStream(DATATEST));
+
+            // Load expected data from an XML dataset
+            ITable expectedTable = new SortedTable(expected.getTable("files"));
+            // Assert actual database table match expected table
+            Assertion.assertEquals(expectedTable, actualTable);
+        } catch (DataSetException e) {
+            e.printStackTrace();
+            fail(e.getMessage());
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            fail(e.getMessage());
+        }
+    }
+
     private Connection getJdbcConnection() {
         try {
             if(connection == null) {

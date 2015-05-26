@@ -21,4 +21,6 @@ public interface DataBaseManager {
     FileModel deleteFile(String absPath);
 
     Connection getConnection();
+
+    void setConnection(Connection jdbcConnection);
 }

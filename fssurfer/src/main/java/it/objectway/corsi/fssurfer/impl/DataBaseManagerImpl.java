@@ -58,7 +58,7 @@ public class DataBaseManagerImpl implements DataBaseManager {
         return null;
     }
 
-    private Statement getStatement() {
+    protected Statement getStatement() {
         logger.trace("getStatement: start");
         try {
             return getConnection().createStatement();
@@ -103,7 +103,7 @@ public class DataBaseManagerImpl implements DataBaseManager {
         return false;
     }
 
-    private PreparedStatement getPreparedStatement(String preparedStatement) {
+    protected PreparedStatement getPreparedStatement(String preparedStatement) {
         logger.trace("getPreparedStatement: start");
         try {
             return getConnection().prepareStatement(preparedStatement);
@@ -128,7 +128,11 @@ public class DataBaseManagerImpl implements DataBaseManager {
         return connection;
     }
 
-    private void driverCheck() {
+    public void setConnection(Connection jdbcConnection) {
+        connection = jdbcConnection;
+    }
+
+    protected void driverCheck() {
         logger.trace("driverCheck: start");
         try {
             Class.forName("com.mysql.jdbc.Driver");
