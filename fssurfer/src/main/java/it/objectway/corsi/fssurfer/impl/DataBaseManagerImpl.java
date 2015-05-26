@@ -8,13 +8,15 @@ import it.objectway.corsi.fssurfer.models.FileModel;
 import java.sql.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * Created by stageusr2015 on 18/05/2015.
  */
 public class DataBaseManagerImpl implements DataBaseManager {
     private static LogManager logger = new LogManagerImpl(DataBaseManagerImpl.class);
-    private static Connection connection = getConnection();
+    private static Connection connection;
+    private static AtomicLong instances = new AtomicLong(0L);
     private static final String PREPAREDFILEINSERT =
             " INSERT INTO files(abspath, name, type, extension, permissions, size)" +
                     " VALUES(?, ?, ?, ?, ?, ?)";
@@ -22,6 +24,11 @@ public class DataBaseManagerImpl implements DataBaseManager {
     private static final String CLEAN =
             "DROP TABLE IF EXISTS `surfer`.`files`";
     private static ExecutorService executor = Executors.newCachedThreadPool();
+
+    public DataBaseManagerImpl() {
+        connection = getConnection();
+        instances.incrementAndGet();
+    }
 
     public void execute(Runnable command) {
         executor.execute(command);
@@ -96,7 +103,7 @@ public class DataBaseManagerImpl implements DataBaseManager {
         return false;
     }
 
-    private static PreparedStatement getPreparedStatement(String preparedStatement) {
+    private PreparedStatement getPreparedStatement(String preparedStatement) {
         logger.trace("getPreparedStatement: start");
         try {
             return getConnection().prepareStatement(preparedStatement);
@@ -106,7 +113,7 @@ public class DataBaseManagerImpl implements DataBaseManager {
         }
         return null;
     }
-    private synchronized static Connection getConnection() {
+    public synchronized Connection getConnection() {
         logger.trace("getConnection: start");
         if(connection == null) {
             driverCheck();
@@ -121,7 +128,7 @@ public class DataBaseManagerImpl implements DataBaseManager {
         return connection;
     }
 
-    private static void driverCheck() {
+    private void driverCheck() {
         logger.trace("driverCheck: start");
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -135,6 +142,9 @@ public class DataBaseManagerImpl implements DataBaseManager {
     protected void finalize() throws Throwable {
         logger.trace("finalize: Closing db connection and shutting down executor");
         connection.close();
+        if(instances.decrementAndGet() == 0) {
+            executor.shutdown();
+        }
         super.finalize();
     }
 }

@@ -5,8 +5,7 @@ import it.objectway.corsi.fssurfer.exceptions.UnknownFileTypeException;
 import it.objectway.corsi.fssurfer.interfaces.FileManager;
 import it.objectway.corsi.fssurfer.interfaces.LogManager;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.FileVisitor;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -104,6 +103,26 @@ public class FileManagerImpl implements FileManager {
 
     public boolean canExecute(Path file) {
         return getFile(file).canExecute();
+    }
+
+    public OutputStream getOutputStream(String path) {
+        try {
+            return new FileOutputStream(new File(path));
+        } catch (IOException e) {
+            logger.error("getOutputStream: file exception ", e);
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public FileWriter getFileWriter(String path) {
+        try {
+            return new FileWriter(path);
+        } catch (IOException e) {
+            logger.error("getFileWriter: file exception ", e);
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public long getSize(Path path) {

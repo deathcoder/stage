@@ -13,7 +13,7 @@ public class Main {
 
     public static void main(String[] args) {
         logger.trace("Main started");
-        String root = "C:\\Users\\stageusr2015\\Downloads\\sites";
+        String root = "C:\\Users\\stageusr2015\\Downloads";
         if(args.length < 1) {
             logger.warn("Usage: java Main <file_system_path> -> Using default configuration");
         }

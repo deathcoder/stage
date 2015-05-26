@@ -2,6 +2,8 @@ package it.objectway.corsi.fssurfer.interfaces;
 
 import it.objectway.corsi.fssurfer.enums.FileType;
 
+import java.io.FileWriter;
+import java.io.OutputStream;
 import java.nio.file.FileVisitor;
 import java.nio.file.Path;
 
@@ -30,4 +32,8 @@ public interface FileManager {
     boolean canWrite(Path file);
 
     boolean canExecute(Path file);
+
+    OutputStream getOutputStream(String path);
+
+    FileWriter getFileWriter(String path);
 }
