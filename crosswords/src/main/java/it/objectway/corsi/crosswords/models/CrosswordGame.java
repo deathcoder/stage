@@ -20,5 +20,5 @@ public class CrosswordGame {
     public String getName() {
         return crossword.getName();
     }
-    
+
 }
