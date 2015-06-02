@@ -18,14 +18,14 @@
 <h1>Product List</h1>
 <table>
     <tbody>
-    <tr><th>ID</th><th>Name</th><th>Description</th></tr>
+    <tr><th>ID</th><th>Name</th><th>Price</th></tr>
     <c:forEach items="${requestScope.prodList}" var="prod">
             <td><a href="prod/?id=<c:out value="${prod.id}"/>">
                 <c:out value="${prod.id}"/>
                 </a>
             </td>
             <td><c:out value="${prod.name}"/></td>
-            <td><c:out value="${prod.description}"/></td>
+            <td><c:out value="${prod.price}"/></td>
         </tr>
     </c:forEach>
     </tbody>

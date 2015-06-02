@@ -14,7 +14,7 @@ import java.util.List;
  * Created by stageusr2015 on 29/05/2015.
  */
 public class DaoProductImpl implements DaoProduct {
-    private static final String SELECTPRODS = "SELECT id, name" +
+    private static final String SELECTPRODS = "SELECT id, name, price" +
             " FROM product";
     private static final String SELECTPROD = "SELECT *" +
             " FROM product" +
@@ -32,7 +32,7 @@ public class DaoProductImpl implements DaoProduct {
                 Product temp = new Product();
                 temp.setId(result.getInt("id"));
                 temp.setName(result.getString("name"));
-                temp.setDescription("TODO change me");
+                temp.setPrice(result.getBigDecimal("price"));
                 products.add(temp);
             }
         } catch (SQLException e) {

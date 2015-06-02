@@ -10,7 +10,29 @@
         table,th,td
         {
             border: 1px solid black;
+            width: 100%;
         }
+        td,th {
+            width: 10%;
+            text-align: center;
+        }
+
+        td.descrcol {
+            width: 60%;
+        }
+
+        p {
+            width: 100%;
+            text-align: center;
+        }
+
+        p.limit {
+            text-overflow: ellipsis; /* will make [...] at the end */
+            width: 370px; /* change to your preferences */
+            white-space: nowrap; /* paragraph to one line */
+            overflow:hidden; /* older browsers */
+        }
+
     </style>
 </head>
 <body>
@@ -26,7 +48,13 @@
         <td><c:out value="${requestScope.product.name}"/></td>
         <td><c:out value="${requestScope.product.price}"/></td>
         <td><c:out value="${requestScope.product.storage}"/></td>
-        <td><c:out value="${requestScope.product.description}"/></td>
+        <td onmouseover="document.getElementById('descr').className = ''"
+            onmouseout="document.getElementById('descr').className = 'limit'"
+            class="descrcol">
+            <p class="limit" id="descr">
+                <c:out value="${requestScope.product.description}"/>
+            </p>
+        </td>
     </tr>
     </tbody>
 </table>
