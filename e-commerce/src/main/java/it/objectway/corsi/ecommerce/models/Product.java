@@ -61,4 +61,8 @@ public class Product {
     public void setVisible(boolean visible) {
         this.visible = visible;
     }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
 }

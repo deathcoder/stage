@@ -9,4 +9,6 @@ import java.util.List;
  */
 public interface DaoProduct {
     List<Product> getProductList();
+
+    Product getProduct(int id);
 }
