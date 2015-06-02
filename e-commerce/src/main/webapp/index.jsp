@@ -10,6 +10,12 @@
         table,th,td
         {
             border: 1px solid black;
+            height: 30px;
+            width: 20%;
+            text-align: center;
+        }
+        td.id {
+            width: 10%;
         }
     </style>
 </head>
@@ -20,7 +26,7 @@
     <tbody>
     <tr><th>ID</th><th>Name</th><th>Price</th></tr>
     <c:forEach items="${requestScope.prodList}" var="prod">
-            <td><a href="prod/?id=<c:out value="${prod.id}"/>">
+            <td class="id"><a href="prod/?id=<c:out value="${prod.id}"/>">
                 <c:out value="${prod.id}"/>
                 </a>
             </td>

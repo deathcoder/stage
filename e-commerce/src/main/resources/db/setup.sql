@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS `ecommerce`.`product` (
   `id` INTEGER NOT NULL AUTO_INCREMENT,
   `name` TEXT NOT NULL ,
   `description` TEXT NULL ,
-  `price` DECIMAL(19, 4) NOT NULL ,
+  `price` DECIMAL(19, 2) NOT NULL ,
   `storage` LONG NOT NULL ,
   `visible` BOOLEAN NOT NULL ,
   PRIMARY KEY (`id`) );

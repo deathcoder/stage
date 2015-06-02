@@ -46,6 +46,10 @@ public class Product {
         this.price = new BigDecimal(price);
     }
 
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
     public long getStorage() {
         return storage;
     }
@@ -60,9 +64,5 @@ public class Product {
 
     public void setVisible(boolean visible) {
         this.visible = visible;
-    }
-
-    public void setPrice(BigDecimal price) {
-        this.price = price;
     }
 }
