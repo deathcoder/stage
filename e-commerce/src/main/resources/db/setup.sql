@@ -17,3 +17,14 @@ CREATE TABLE IF NOT EXISTS `ecommerce`.`product` (
   `storage` LONG NOT NULL ,
   `visible` BOOLEAN NOT NULL ,
   PRIMARY KEY (`id`) );
+
+CREATE TABLE IF NOT EXISTS `ecommerce`.`order_row` (
+  `product` INT NOT NULL ,
+  `amount` INT NOT NULL ,
+  PRIMARY KEY (`product`) ,
+  INDEX `product_idx` (`product` ASC) ,
+  CONSTRAINT `id`
+  FOREIGN KEY (`product`)
+  REFERENCES `ecommerce`.`product` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);

@@ -4,6 +4,10 @@ import it.objectway.corsi.ecommerce.interfaces.DaoProduct;
 import it.objectway.corsi.ecommerce.interfaces.DatabaseManager;
 import it.objectway.corsi.ecommerce.interfaces.LogManager;
 import it.objectway.corsi.ecommerce.models.Product;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.cfg.Configuration;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -42,7 +46,7 @@ public class DaoProductImpl implements DaoProduct {
         return products;
     }
 
-    @Override
+    /*@Override
     public Product getProduct(int id) {
         logger.trace("getProduct(", id, "): start");
         ResultSet result = executeQuery(SELECTPROD, id);
@@ -61,6 +65,20 @@ public class DaoProductImpl implements DaoProduct {
             e.printStackTrace();
         }
         return null;
+    }*/
+    @Override
+    public Product getProduct(int id) {
+        logger.trace("getProduct(", id, "): start");
+        Configuration cfg = new Configuration().configure();
+        StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder()
+                .applySettings(cfg.getProperties());
+        SessionFactory factory = cfg.buildSessionFactory(builder.build());
+        Session session = factory.openSession();
+        /*Product product = (Product) session.load(Product.class, id);*/
+        Product product = (Product) session.get(Product.class, id);
+        /*logger.trace("getProduct: exit", product);*/
+        session.close();
+        return product;
     }
 
     private ResultSet executeQuery(String query, Object... parameters) {

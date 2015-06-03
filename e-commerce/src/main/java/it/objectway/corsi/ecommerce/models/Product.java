@@ -15,7 +15,10 @@ public class Product {
 
     public Product() { }
 
-    public int getId() { return id; }
+    public int getId() {
+
+            return id;
+    }
 
     public void setId(int id) {
         this.id = id;
@@ -41,13 +44,13 @@ public class Product {
         return price;
     }
 
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
     public void setPrice(String price) {
         /* the recommended constructor is BigDecimal(String), not BigDecimal(double) - see javadoc */
         this.price = new BigDecimal(price);
-    }
-
-    public void setPrice(BigDecimal price) {
-        this.price = price;
     }
 
     public long getStorage() {
