@@ -15,7 +15,7 @@ import java.io.IOException;
  * Created by pong on 02/06/15.
  */
 @WebServlet("/prod/*")
-public class DetailServlet extends HttpServlet {
+public class ProductDetailServlet extends HttpServlet {
     private static DaoProduct daoProduct = new DaoProductImpl();
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
