@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="it.objectway.corsi.hibtest.models.Profile" table="profile">
+        <id name="account" type="long">
+            <column name="account" />
+            <generator class="foreign" >
+                <param name="property">accountObj</param>
+            </generator>
+        </id>
+        <property name="name" type="string">
+            <column name="name" not-null="false"/>
+        </property>
+        <property name="lastname" type="string">
+            <column name="lastname" not-null="false"/>
+        </property>
+        <property name="birth" type="date">
+            <column name="birth" not-null="false"/>
+        </property>
+        <one-to-one name="accountObj" class="it.objectway.corsi.hibtest.models.Account"
+                    constrained="true"/>
+    </class>
+</hibernate-mapping>
