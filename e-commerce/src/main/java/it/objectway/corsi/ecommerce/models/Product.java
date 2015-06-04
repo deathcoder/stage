@@ -6,7 +6,7 @@ import java.math.BigDecimal;
  * Created by stageusr2015 on 29/05/2015.
  */
 public class Product {
-    private Integer id;
+    private int id;
     private StringBuilder name;
     private StringBuilder description;
     private BigDecimal price;

@@ -22,13 +22,13 @@
         <property name="visible" type="boolean">
             <column name="visible" not-null="true" />
         </property>
-        <set name="orders" cascade="all">
+        <!--<set name="orders" cascade="all">
             <key column="product"/>
             <one-to-many class="it.objectway.corsi.ecommerce.models.OrderRow"/>
-        </set>
+        </set>-->
     </class>
 
-    <class name="it.objectway.corsi.ecommerce.models.OrderRow" table="order_row">
+    <!--<class name="it.objectway.corsi.ecommerce.models.OrderRow" table="order_row">
         <id name="product" type="int">
             <column name="product"/>
             <generator class="foreign"/>
@@ -36,5 +36,5 @@
         <property name="amount" type="int">
             <column name="amount"/>
         </property>
-    </class>
+    </class>-->
 </hibernate-mapping>
