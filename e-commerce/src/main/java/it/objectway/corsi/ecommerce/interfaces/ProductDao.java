@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Created by stageusr2015 on 29/05/2015.
  */
-public interface DaoProduct {
+public interface ProductDao {
     List<Product> getProductList();
 
     Product getProduct(int id);

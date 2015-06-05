@@ -6,7 +6,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
     <title>Home Page</title>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-    <style>
+    <style type="text/css">
         table,th,td
         {
             border: 1px solid black;
@@ -14,24 +14,39 @@
             width: 20%;
             text-align: center;
         }
+        table {
+            width: 50%
+        }
         td.id {
             width: 10%;
+        }
+        #prods tr > *:nth-child(1) {
+            display: none;
         }
     </style>
 </head>
 <body>
 <%-- Using JSTL forEach and out to loop a list and display items in table --%>
 <h1>Product List</h1>
-<table>
+<table id="prods">
     <tbody>
-    <tr><th>ID</th><th>Name</th><th>Price</th></tr>
+    <tr><th>ID</th><th>Name</th><th>Price</th><th>Add to Basket</th></tr>
     <c:forEach items="${requestScope.prodList}" var="prod">
-            <td class="id"><a href="prod/?id=<c:out value="${prod.id}"/>">
-                <c:out value="${prod.id}"/>
+        <tr>
+            <td class="id"><c:out value="${prod.id}"/></td>
+            <td>
+                <a href="product?id=<c:out value="${prod.id}"/>">
+                    <c:out value="${prod.name}"/>
                 </a>
             </td>
-            <td><c:out value="${prod.name}"/></td>
             <td><c:out value="${prod.price}"/></td>
+            <td>
+                <form action="basket" method="post">
+                    <input type="hidden" name="amount" value="1"/>
+                    <input type="hidden" name="id" value="<c:out value="${prod.id}"/>"/>
+                    <input type="submit" value="Add to Basket"/>
+                </form>
+            </td>
         </tr>
     </c:forEach>
     </tbody>

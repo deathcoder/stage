@@ -1,3 +1,4 @@
+<%@ page import="it.objectway.corsi.ecommerce.models.Product" %>
 <%@ page language="java" contentType="text/html; charset=US-ASCII"
     pageEncoding="US-ASCII"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -6,11 +7,15 @@
     <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
     <title>Home Page</title>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-    <style>
+    <style type="text/css">
         table,th,td
         {
             border: 1px solid black;
             width: 100%;
+        }
+
+        table {
+            width: 50%;
         }
         td,th {
             width: 10%;
@@ -33,11 +38,18 @@
             overflow:hidden; /* older browsers */
         }
 
+        #prods tr > *:nth-child(1) {
+            display: none;
+        }
+        input.amount {
+            width: auto;
+            text-align: left;
+        }
     </style>
 </head>
 <body>
 <h1>Product</h1>
-<table>
+<table id="prods">
     <tbody>
     <tr>
         <th>ID</th><th>Name</th><th>Price</th>
@@ -58,6 +70,12 @@
     </tr>
     </tbody>
 </table>
+<br/>
+<form action="basket" method="post">
+    <input class="amount" type="number" min="1" name="amount" value="1"/>
+    <input type="hidden" name="id" value="<c:out value="${requestScope.product.id}"/>"/>
+    <input type="submit" value="Add to Basket"/>
+</form>
 <br><br>
 </body>
 </html>

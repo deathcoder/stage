@@ -65,4 +65,16 @@ public class Product {
     public void setVisible(boolean visible) {
         this.visible = visible;
     }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", name=" + name +
+                ", description=" + description +
+                ", price=" + price +
+                ", storage=" + storage +
+                ", visible=" + visible +
+                '}';
+    }
 }

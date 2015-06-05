@@ -1,6 +1,6 @@
 package it.objectway.corsi.ecommerce.impl;
 
-import it.objectway.corsi.ecommerce.interfaces.DaoProduct;
+import it.objectway.corsi.ecommerce.interfaces.ProductDao;
 import it.objectway.corsi.ecommerce.interfaces.DatabaseManager;
 import it.objectway.corsi.ecommerce.interfaces.LogManager;
 import it.objectway.corsi.ecommerce.models.Product;
@@ -10,22 +10,24 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static it.objectway.corsi.ecommerce.utils.Strings.buildString;
+
 /**
  * Created by stageusr2015 on 29/05/2015.
  */
-public class DaoProductImpl implements DaoProduct {
-    private static final String SELECTPRODS = "SELECT id, name, price" +
-            " FROM product";
-    private static final String SELECTPROD = "SELECT *" +
-            " FROM product" +
-            " WHERE id=?";
+public class ProductDaoImpl implements ProductDao {
+    private static final StringBuilder SELECTPRODS = buildString("SELECT id, name, price",
+            " FROM product");
+    private static final StringBuilder SELECTPROD = buildString("SELECT *",
+            " FROM product",
+            " WHERE id=?");
 
     private static final DatabaseManager databaseManager = new DatabaseManagerImpl();
-    private static final LogManager logger = new LogManagerImpl(DaoProductImpl.class);
+    private static final LogManager logger = new LogManagerImpl(ProductDaoImpl.class);
 
     public List<Product> getProductList() {
         logger.trace("getProductList: start");
-        ResultSet result = executeQuery(SELECTPRODS);
+        ResultSet result = executeQuery(SELECTPRODS.toString());
         List<Product> products = new ArrayList<>();
         try {
             while(result.next()) {
@@ -45,7 +47,7 @@ public class DaoProductImpl implements DaoProduct {
     @Override
     public Product getProduct(int id) {
         logger.trace("getProduct(", id, "): start");
-        ResultSet result = executeQuery(SELECTPROD, id);
+        ResultSet result = executeQuery(SELECTPROD.toString(), id);
         try {
             while(result.next()) {
                 Product product = new Product();
