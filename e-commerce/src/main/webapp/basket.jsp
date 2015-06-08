@@ -34,33 +34,44 @@
     #prods tr > *:nth-child(1) {
       display: none;
     }
-    input.amount {
-      width: auto;
-      text-align: left;
+
+    tr.hidden {
+      display: none;
     }
   </style>
+  <script type="text/javascript">
+    function hideIfZero(element) {
+      if(element.value == 0) {
+        element.type = "hidden";
+        document.getElementById(element.id).className = "hidden";
+      }
+    }
+  </script>
 </head>
 <body>
 <%-- Using JSTL forEach and out to loop a list and display items in table --%>
 <h1>Shopping basket</h1>
-<form action="basket" method="put"> cant do this ._.
+<form action="basket" method="post">
   <table id="prods">
     <tbody>
       <tr><th>ID</th><th>Name</th><th>Price</th><th>Amount</th></tr>
-      <c:forEach items="${sessionScope.basket}" var="entry">
-        <tr>
-          <td class="id"><c:out value="${entry.value.id}"/></td>
+      <c:forEach items="${sessionScope.basket.values()}" var="product">
+        <tr id="row<c:out value="${product.id}"/>">
+          <td class="id">
+            <input type="hidden" name="product" value="<c:out value="${product.id}"/>"/></td>
           <td>
-            <a href="product?id=<c:out value="${entry.value.id}"/>">
-                <c:out value="${entry.value.name}"/>
+            <a href="product?id=<c:out value="${product.id}"/>">
+                <c:out value="${product.name}"/>
             </a>
           </td>
-          <td><c:out value="${entry.value.price}"/></td>
-          <td><input class="amount" type="number" min="1" name="amount" value="<c:out value="${entry.value.amount}"/>"></td>
+          <td><c:out value="${product.price}"/></td>
+          <td><input id="row<c:out value="${product.id}"/>" type="number" min="0" name="amount" value="<c:out value="${product.amount}"/>" title="amount" onchange="hideIfZero(this)"/>
+          </td>
         </tr>
     </c:forEach>
     </tbody>
   </table>
+  <input type="hidden" name="action" value="update">
   <input type="submit" value="save">
 </form>
 </body>

@@ -28,29 +28,60 @@ public class BasketServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         logger.trace("doPost: start");
-        logger.debug("doPost: amount(", request.getParameter("amount"), "), prod_id(", request.getParameter("id"), ")");
+        String action = request.getParameter("action");
+        logger.debug("doPost: action(", request.getParameter("action"), ")");
+        if(action != null && action.equals("update")) {
+            doPut(request, response);
+            return;
+        }
+        logger.debug("doPost: amount(", request.getParameter("amount"), "), product id(", request.getParameter("id"), ")");
         Integer amount = new Integer(request.getParameter("amount"));
-        Integer prod_id = new Integer(request.getParameter("id"));
+        Integer product = new Integer(request.getParameter("id"));
+        addToSessionBasket(product, amount, request);
+        dispatchToBasket(request, response);
+    }
+
+    private void addToSessionBasket(int product, int amount, HttpServletRequest request) {
+        logger.debug("addToSessionBasket: start");
         HttpSession session = request.getSession();
         Map<Integer, BasketProduct> basket = (Map<Integer, BasketProduct>) session.getAttribute("basket");
         if(basket == null) {
             basket = new HashMap<>();
             session.setAttribute("basket", basket);
         }
-        BasketProduct product = basket.get(prod_id);
-        if (product == null) {
-            basket.put(prod_id, new BasketProduct(dao.getProduct(prod_id), amount));
+        if(amount == 0) {
+            basket.remove(product);
+            return;
+        }
+        BasketProduct basketProduct = basket.get(product);
+        if (basketProduct == null) {
+            basket.put(product, new BasketProduct(dao.getProduct(product), amount));
         }
         else {
-            product.setAmount(amount);
+            basketProduct.setAmount(amount);
         }
-        logger.debug("doPost: basket(", basket, ")");
-        RequestDispatcher rd = getServletContext().getRequestDispatcher("/basket.jsp");
-        rd.forward(request, response);
+        logger.debug("addToSessionBasket: basket(", basket, ")");
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        dispatchToBasket(request, response);
+    }
+
+    @Override
+    protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        logger.trace("doPut: start");
+        logger.debug("doPut: amount(", request.getParameterValues("amount"),
+                ") product(", request.getParameterValues("product"), ")");
+        String[] amounts = request.getParameterValues("amount");
+        String[] products = request.getParameterValues("product");
+        for(int i = 0; i < Math.min(amounts.length, products.length); i++) {
+            addToSessionBasket(new Integer(products[i]), new Integer(amounts[i]), request);
+        }
+        dispatchToBasket(request, response);
+    }
+
+    private void dispatchToBasket(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException  {
         RequestDispatcher rd = getServletContext().getRequestDispatcher("/basket.jsp");
         rd.forward(request, response);
     }
