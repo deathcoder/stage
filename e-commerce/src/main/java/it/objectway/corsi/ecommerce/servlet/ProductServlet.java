@@ -21,7 +21,7 @@ public class ProductServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
         request.setAttribute("product", productDao.getProduct(id));
-        RequestDispatcher rd = getServletContext().getRequestDispatcher("/product.jsp");
+        RequestDispatcher rd = getServletContext().getRequestDispatcher("/WEB-INF/templates/product.jsp");
         rd.forward(request, response);
     }
 }

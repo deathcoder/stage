@@ -82,7 +82,7 @@ public class BasketServlet extends HttpServlet {
     }
 
     private void dispatchToBasket(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException  {
-        RequestDispatcher rd = getServletContext().getRequestDispatcher("/basket.jsp");
+        RequestDispatcher rd = getServletContext().getRequestDispatcher("/WEB-INF/templates/basket.jsp");
         rd.forward(request, response);
     }
 }

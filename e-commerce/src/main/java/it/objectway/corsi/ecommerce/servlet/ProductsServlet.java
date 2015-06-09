@@ -23,7 +23,7 @@ public class ProductsServlet extends HttpServlet {
 
         request.setAttribute("htmlTagData", "<br/> creates a new line.");
         /*request.setAttribute("url", "http://www.journaldev.com");*/
-        RequestDispatcher rd = getServletContext().getRequestDispatcher("/products.jsp");
+        RequestDispatcher rd = getServletContext().getRequestDispatcher("/WEB-INF/templates/products.jsp");
         rd.forward(request, response);
     }
 }
