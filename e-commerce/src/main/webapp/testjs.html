@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<script type="text/javascript">
+    var admin = {};
+    admin.name = "admin";
+    admin.username = "admin";
+    admin.password = "admin";
+    admin.role = "admin";
+
+    var users = [];
+    users.push(admin);
+    console.log(admin);
+    console.log(users);
+    function register() {
+        console.log("register: enter")
+        var user = {};
+        user.name = prompt("Name:");
+        user.username = prompt("username:");
+        user.password = prompt("password:");
+        console.log(user);
+        users.push(user);
+        alert("Registration completed");
+        console.log(users);
+    }
+
+    function checkUser(username, password) {
+        for(var i=0; i < users.length; i++) {
+            if(users[i].username == username && users[i].password == password) {
+                console.log("user found: " + username);
+                return users[i];
+            }
+        }
+        console.log("user not found");
+        return false;
+    }
+
+    function login() {
+        var username = prompt("username:");
+        var password = prompt("password:");
+        var user = checkUser(username, password);
+        if(user) {
+            var message = user.role == "admin" ? "Administrator" : "User";
+            document.write("<h1>" + message + ": logged in</h1>" +
+                    "<br> <h2>Hello " + user.name + ".</h2>");
+        }
+        else {
+            alert("User not found");
+        }
+    }
+</script>
+<button name="Register" value="Register" onclick="register()">Register</button>
+
+<button name="Login" value="Login" onclick="login()">Login</button>
+</body>
+</html>

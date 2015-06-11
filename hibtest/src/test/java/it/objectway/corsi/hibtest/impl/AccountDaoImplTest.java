@@ -8,26 +8,34 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import static org.junit.Assert.assertEquals;
+
 /**
  * Created by stageusr2015 on 04/06/2015.
  */
 public class AccountDaoImplTest {
-    private static AccountDao dao = new AccountDaoImpl();
+    private static AccountDao accountDao = new AccountSpringDao();
     private static final LogManager logger = new LogManagerImpl(AccountDaoImplTest.class);
+
+    public static void setAccountDao(AccountDao accountDao) {
+        AccountDaoImplTest.accountDao = accountDao;
+    }
 
     @Before
     public void setUp() throws Exception {
-        dao.openSession();
+        accountDao.openSession();
     }
 
     @After
     public void tearDown() throws Exception {
-        dao.closeSession();
+        accountDao.closeSession();
     }
 
     @Test
     public void testFindById() throws Exception {
-
+        Account account = accountDao.findById(4);
+        assertEquals("test", account.getUsername());
+        assertEquals("test", account.getPassword());
     }
 
     @Test
@@ -41,8 +49,8 @@ public class AccountDaoImplTest {
         String expected = "test";
         account.setUsername(expected);
         account.setPassword(expected);
-        dao.makePersistent(account);
+        accountDao.makePersistent(account);
         logger.trace(account.getId());
-        dao.delete(account);
+        accountDao.delete(account);
     }
 }

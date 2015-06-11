@@ -5,14 +5,39 @@
   <artifactId>e-commerce</artifactId>
   <packaging>war</packaging>
   <version>1.0-SNAPSHOT</version>
+
+  <properties>
+    <spring.version>4.1.6.RELEASE</spring.version>
+  </properties>
+
   <name>e-commerce Maven Webapp</name>
   <url>http://maven.apache.org</url>
   <dependencies>
+
+    <!-- Build dependencies -->
+    <!-- Spring framework -->
     <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.12</version>
-      <scope>test</scope>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-core</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-jdbc</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-web</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.aspectj</groupId>
+      <artifactId>aspectjtools</artifactId>
+      <version>1.8.6</version>
     </dependency>
 
     <dependency>
@@ -33,6 +58,11 @@
       <version>3.4</version>
     </dependency>
 
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-dbcp2</artifactId>
+      <version>2.1</version>
+    </dependency>
 
     <dependency>
       <groupId>javax.servlet</groupId>
@@ -52,6 +82,13 @@
         <version>1.1.2</version>
     </dependency>
 
+    <!-- Test dependencies -->
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.12</version>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
 
   <build>

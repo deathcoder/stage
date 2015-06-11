@@ -1,7 +1,6 @@
 package it.objectway.corsi.ecommerce.servlet;
 
 import it.objectway.corsi.ecommerce.impl.LogManagerImpl;
-import it.objectway.corsi.ecommerce.impl.ProductDaoImpl;
 import it.objectway.corsi.ecommerce.interfaces.LogManager;
 import it.objectway.corsi.ecommerce.interfaces.ProductDao;
 import it.objectway.corsi.ecommerce.models.BasketProduct;
@@ -23,7 +22,11 @@ import java.util.Map;
 @WebServlet("/basket")
 public class BasketServlet extends HttpServlet {
     private static final LogManager logger = new LogManagerImpl(BasketServlet.class);
-    private static final ProductDao dao = new ProductDaoImpl();
+    private static ProductDao productDao;
+
+    public void setProductDao(ProductDao productDao) {
+        BasketServlet.productDao = productDao;
+    }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -55,7 +58,9 @@ public class BasketServlet extends HttpServlet {
         }
         BasketProduct basketProduct = basket.get(product);
         if (basketProduct == null) {
-            basket.put(product, new BasketProduct(dao.getProduct(product), amount));
+            logger.debug("addToSessionBasket: productDao(", productDao, ")");
+
+            basket.put(product, new BasketProduct(productDao.getProduct(product), amount));
         }
         else {
             basketProduct.setAmount(amount);

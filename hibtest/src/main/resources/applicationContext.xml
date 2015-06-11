@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="accountDao" class="it.objectway.corsi.hibtest.impl.AccountSpringDao">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="mappingResources">
+            <list>
+                <value>hib/account.hbm.xml</value>
+                <value>hib/profile.hbm.xml</value>
+            </list>
+        </property>
+        <property name="hibernateProperties">
+            <value>
+                hibernate.dialect=org.hibernate.dialect.MySQLDialect
+            </value>
+        </property>
+    </bean>
+    <bean id="dataSource" destroy-method="close" class="org.apache.commons.dbcp2.BasicDataSource">
+              <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/accounts"/>
+        <property name="username" value="accounts"/>
+        <property name="password" value="accounts"/>
+    </bean>
+</beans>
