@@ -20,9 +20,7 @@ public class ProductsServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setAttribute("prodList", productDao.getProductList());
-
-        request.setAttribute("htmlTagData", "<br/> creates a new line.");
-        /*request.setAttribute("url", "http://www.journaldev.com");*/
+        request.setAttribute("hrefPrefix", "product?id=");
         RequestDispatcher rd = getServletContext().getRequestDispatcher("/WEB-INF/templates/products.jsp");
         rd.forward(request, response);
     }

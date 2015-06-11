@@ -35,7 +35,7 @@
         <tr>
             <td class="id"><c:out value="${prod.id}"/></td>
             <td>
-                <a href="product?id=<c:out value="${prod.id}"/>">
+                <a href="<c:out value="${requestScope.hrefPrefix}"/><c:out value="${prod.id}"/>">
                     <c:out value="${prod.name}"/>
                 </a>
             </td>
