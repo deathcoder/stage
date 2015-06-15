@@ -26,6 +26,7 @@
     </style>
 </head>
 <body>
+<%@ include file="header.jsp" %>
 <%-- Using JSTL forEach and out to loop a list and display items in table --%>
 <h1>Product List</h1>
 <table id="prods">
@@ -76,6 +77,6 @@
 &lt;%&ndash; c:url example &ndash;%&gt;
 <a href="<c:url value="${requestScope.url }"></c:url>">JournalDev</a>
 --%>
-
+<%@ include file="footer.jsp" %>
 </body>
 </html>

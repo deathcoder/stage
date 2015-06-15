@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+    function doMagic() {
+        var required = $("form.main").find(":text");
+        required.each(
+                function (index, element) {
+                    if (!$(element).val()) {
+                        $(element).css("background", "red");
+                    }
+                    else {
+                        $(element).css("background", "white");
+                    }
+                }
+        );
+        var email = $("input[name$=email]");
+        var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+
+        if (!(email.val() && emailReg.test(email.val()))) {
+            $(email).css("background", "red");
+        } else {
+            $(email).css("background", "white");
+        }
+        var errors = 0;
+        required.each(
+                function(index, element) {
+                    console.log($(element).css("background"));
+                    if($(element).css("background") == "rgb(255, 0, 0)") {
+                        errors++;
+                    }
+                }
+        );
+        console.log(errors);
+        if(errors == 0) {
+            $("form.hidden").find("table").append(
+                    $("<tr><td>"+ $("input[name=name]").val() + "</td>" +
+                    "<td>" + $("input[name=lastname]").val() + "</td>" +
+                    "<td>" + $("input[name=email]").val() + "</td></tr>")
+            )
+        }
+    }
+</script>
+<form class="main">
+    <table>
+        <tr>
+            <td>
+                name: <input type="text" name="name" title="name"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                last name: <input type="text" name="lastname" title="last name"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                email: <input type="text" name="email" title="email"/>
+            </td>
+        </tr>
+    </table>
+    <input type="button" name="submit" onclick="doMagic()" value="submit">
+</form>
+
+<form class="hidden">
+    show registered users <input type="checkbox" onchange="$('form.hidden').find('table').toggle()" title="toggle">
+    <table>
+        <tr></tr>
+    </table>
+</form>
+
+<script type="text/javascript">
+    $("form.hidden").find("table").hide();
+</script>
+</body>
+</html>

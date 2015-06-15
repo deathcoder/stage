@@ -17,9 +17,9 @@
         <property name="suffix" value=".jsp"/>
     </bean>
 
-    <!--<mvc:resources mapping="/resources/**" location="/resources/" />-->
-
     <mvc:annotation-driven />
 
-    <import resource="spring/spring-product-config.xml"/>
+    <import resource="spring/spring-database.xml"/>
+    <import resource="spring/spring-basket.xml"/>
+    <import resource="spring/spring-security.xml"/>
 </beans>

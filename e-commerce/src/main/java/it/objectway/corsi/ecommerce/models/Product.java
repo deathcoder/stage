@@ -6,11 +6,11 @@ import java.math.BigDecimal;
  * Created by stageusr2015 on 29/05/2015.
  */
 public class Product {
-    private Integer id;
+    private int id;
     private StringBuilder name;
     private StringBuilder description;
     private BigDecimal price;
-    private Long storage;
+    private long storage;
     private Boolean visible;
 
     public Product() { }
@@ -37,6 +37,10 @@ public class Product {
         this.description = new StringBuilder(description);
     }
 
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
     public BigDecimal getPrice() {
         return price;
     }
@@ -44,10 +48,6 @@ public class Product {
     public void setPrice(String price) {
         /* the recommended constructor is BigDecimal(String), not BigDecimal(double) - see javadoc */
         this.price = new BigDecimal(price);
-    }
-
-    public void setPrice(BigDecimal price) {
-        this.price = price;
     }
 
     public long getStorage() {

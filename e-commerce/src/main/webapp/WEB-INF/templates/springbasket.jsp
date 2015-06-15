@@ -56,7 +56,7 @@
   <table id="prods">
     <tbody>
       <tr><th>ID</th><th>Name</th><th>Price</th><th>Amount</th></tr>
-      <c:forEach items="${sessionScope.basket.values()}" var="product">
+      <c:forEach items="${basket.basketProducts}" var="product">
         <tr id="row<c:out value="${product.id}"/>">
           <td class="id">
             <input type="hidden" name="product" value="<c:out value="${product.id}"/>"/></td>

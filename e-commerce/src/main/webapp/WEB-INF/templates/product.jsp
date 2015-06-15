@@ -48,6 +48,7 @@
     </style>
 </head>
 <body>
+<%@ include file="header.jsp" %>
 <h1>Product</h1>
 <table id="prods">
     <tbody>
@@ -77,5 +78,7 @@
     <input type="submit" value="Add to Basket"/>
 </form>
 <br><br>
+
+<%@ include file="footer.jsp" %>
 </body>
 </html>
