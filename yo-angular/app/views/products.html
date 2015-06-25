@@ -1,0 +1,23 @@
+<h1>Products</h1>
+<div class="input-group">
+  <span class="md icon input-group-addon glyphicon-search"></span>
+  <input type="text" class="search-field form-control" placeholder="Search product" ng-model="query">
+</div>
+<h1>Product list</h1>
+<table class="table table-striped">
+  <tr>
+    <td>name</td>
+    <td>price</td>
+    <td>description</td>
+    <td>product detail</td>
+  </tr>
+  <tr ng-repeat="product in products | filter:query | orderBy:name">
+    <td>{{product.name}}</td>
+    <td>{{product.price}}</td>
+    <td>{{product.description}}</td>
+    <td>
+      <button class="btn btn-default btn-icon-text waves-effect"><i class="md md-more-vert"></i>
+        <a ng-href="#/product/{{product.id}}">More</a>
+      </button></td>
+  </tr>
+</table>

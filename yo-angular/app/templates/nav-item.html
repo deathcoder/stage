@@ -1,0 +1,4 @@
+<!--<li ng-class="{active:isInSection('{{section}}')}"><a ng-href="{{link}}" ng-transclude></a></li>-->
+<li role="presentation" ng-class="{active:isInSection('{{section}}')}">
+  <a ng-href="{{link}}" aria-controls="{{section}}" role="tab" data-toggle="tab" aria-expanded="true" ng-transclude></a>
+</li>
