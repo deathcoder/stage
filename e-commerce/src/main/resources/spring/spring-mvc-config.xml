@@ -16,9 +16,9 @@
         <property name="prefix" value="/WEB-INF/templates/"/>
         <property name="suffix" value=".jsp"/>
     </bean>
-
     <mvc:annotation-driven />
 
+    <mvc:resources location = "/angular/app/" mapping = "/spring/app/**" />
     <import resource="spring-database.xml"/>
     <import resource="spring-basket.xml"/>
     <import resource="spring-security.xml"/>

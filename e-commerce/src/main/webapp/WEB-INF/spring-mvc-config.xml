@@ -19,6 +19,8 @@
 
     <mvc:annotation-driven />
 
+    <mvc:resources location = "/angular/app/" mapping = "/spring/app/**" />
+
     <import resource="spring/spring-database.xml"/>
     <import resource="spring/spring-basket.xml"/>
     <import resource="spring/spring-security.xml"/>
