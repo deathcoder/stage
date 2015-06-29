@@ -1,23 +1,41 @@
 <div ng-init="initProducts()">
-  <h1>Products</h1>
+  <div class="card">
+    <div class="card-header">
+      <h2>{{customs.title}} <small>{{customs.description}}</small></h2>
+      <div class="row">
+        <div class="col-sm-12 actionBar">
+          <div class="search form-group">
+              <input type="text" class="search-field form-control" placeholder="Search" ng-model="query.name">
+          </div>
+        </div>
+      </div>
+    </div>
 
-<input type="text" class="search-field form-control" placeholder="Search product" ng-model="query">
-<h1>Product list</h1>
-<table class="table table-striped">
-  <tr>
-    <td>name</td>
-    <td>price</td>
-    <td>description</td>
-    <td>product detail</td>
-  </tr>
-  <tr ng-repeat="product in products | filter:query | orderBy:name">
-    <td>{{product.name}}</td>
-    <td>{{product.price}}</td>
-    <td>{{product.description}}</td>
-    <td>
-      <button class="btn btn-default btn-icon-text waves-effect"><i class="md md-more-vert"></i>
-        <a ng-href="#/product/{{product.id}}">More</a>
-      </button></td>
-  </tr>
-</table>
+    <div class="table-responsive" style="overflow: hidden; outline: none;">
+      <table class="table table-hover">
+        <thead>
+        <tr>
+          <td>Name</td>
+          <td>Price</td>
+          <td>Description</td>
+          <td>Product detail</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="product in products | filter:query | orderBy:name">
+            <td>{{product.name}}</td>
+            <td>{{product.price | currency:'€'}}</td>
+            <td class="limit">
+              {{product.description}}
+            </td>
+          <td>
+            <button class="btn btn-default btn-icon-text waves-effect"><i class="md md-more-vert"></i>
+              <a ng-href="#/product/{{product.id}}">More</a>
+            </button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>

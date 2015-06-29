@@ -1,5 +1,6 @@
 'use strict';
 
+
 /**
  * @ngdoc function
  * @name owEcommerceApp.controller:AboutCtrl
@@ -20,15 +21,22 @@ angular.module('owEcommerceApp')
       templateUrl: 'templates/nav-item.html',
       controller: function ($scope) {
         $scope.isInSection = function(expectedSection) {
-          console.log($route);
-          console.log($route.routes[$location.$$path]);
-          console.log($location.$$path);
-          console.log($routeParams);
+          mylog("route", $route);
+          mylog($route.routes[$location.$$path]);
+          mylog($location.$$path);
+          mylog("routeparams", $routeParams);
+
           var editMe = angular.copy($location.$$path);
+          mylog("location", $location);
           for (var key in $routeParams) {
-            console.log("route key ", $routeParams[key]);
+            mylog("route key ", $routeParams[key]);
             editMe = editMe.replace("/" + $routeParams[key], "/:" + key);
-            console.log("edit ", editMe);
+            mylog("edit ", editMe);
+          }
+
+          if($route.routes[editMe] == undefined) {
+            mylog("param empty");
+            return false;
           }
           return expectedSection === $route.routes[editMe].section
         }

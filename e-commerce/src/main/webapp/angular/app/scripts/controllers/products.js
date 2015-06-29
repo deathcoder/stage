@@ -8,7 +8,7 @@
  * Controller of the owEcommerceApp
  */
 angular.module('owProduct')
-  .controller('ProductCtrl', function ($scope, ProductService, $routeParams) {
+  .controller('ProductCtrl', function ($scope, ProductService, $routeParams, $location) {
 
       $scope.initProducts= function(){
         $scope.getProducts();
@@ -24,10 +24,21 @@ angular.module('owProduct')
         });
       };
 
-      $scope.getProduct = function() {
-        ProductService.product.get({id:$routeParams.id}, function(response){
-          $scope.products = response;
+      $scope.getProduct = function () {
+        ProductService.product.get({id: $routeParams.id}, function (response) {
+          $scope.product = response;
           console.log("prodotto", response);
         })
-      }
-});
+      };
+
+      $scope.addToBasket = function() {
+          /*ProductService.basket.save({}, $scope.product);*/
+          ProductService.test.save({}, $scope.product);
+        $location.path("/basket");
+      };
+
+      $scope.customs = {
+          title: "Product List",
+          description: "Full product list"
+      };
+    });

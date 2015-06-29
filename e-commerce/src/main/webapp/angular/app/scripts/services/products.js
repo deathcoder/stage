@@ -12,6 +12,8 @@ angular.module('owProduct')
       var prefix = "/spring/api";
       return {
           products: $resource(prefix + "/products", {}, {}),
-          product: $resource(prefix + "/product/:id", {}, {})
+          product: $resource(prefix + "/product/:id", {}, {}),
+          basket: $resource(prefix + "/basket"),
+          test: $resource(prefix + "/test")
       };
   });

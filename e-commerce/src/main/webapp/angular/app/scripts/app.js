@@ -1,5 +1,6 @@
 'use strict';
 
+angular
 /**
  * @ngdoc overview
  * @name owEcommerceApp
@@ -8,8 +9,7 @@
  *
  * Main module of the application.
  */
-angular
-  .module('owProduct', [
+    .module('owProduct', [
     'ngAnimate',
     'ngAria',
     'ngCookies',
@@ -17,13 +17,23 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'owCustomFilter'
   ]);
+
+angular.
+    module('owBasket', ['owProduct']);
 angular
   .module('owEcommerceApp', [
-    'owProduct'
+    'owBasket'
   ])
-  .config(function ($routeProvider) {
+  .config(function ($routeProvider, $httpProvider) {
+/*
+
+    $httpProvider.defaults.xsrfHeaderName = 'X-CSRF-TOKEN';
+    $httpProvider.defaults.xsrfCookieName = 'csrftoken';
+*/
+
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
@@ -49,7 +59,18 @@ angular
         controller: 'ProductCtrl',
         section: 'products'
       })
+        .when('/basket', {
+          templateUrl: 'views/products.html',
+          controller: 'BasketCtrl',
+          section: 'products'
+        })
       .otherwise({
         redirectTo: '/'
       });
   });
+var debug = false;
+var mylog = function (message) {
+  if(debug) {
+    console.log(message);
+  }
+};

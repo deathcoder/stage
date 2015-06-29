@@ -1,11 +1,12 @@
 package it.objectway.corsi.ecommerce.models;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 /**
  * Created by stageusr2015 on 05/06/2015.
  */
-public class BasketProduct {
+public class BasketProduct implements Serializable {
     private int amount;
     private Product product;
 

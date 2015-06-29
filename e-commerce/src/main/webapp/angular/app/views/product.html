@@ -1,4 +1,16 @@
 <div ng-init="initProduct()">
-<h1>Product Detail</h1>
-{{product}}
+    <div class="card">
+        <div class="card-header bgm-bluegray m-b-20">
+            <h2>{{product.name | capitalize:true }}
+                <small>Price: {{product.price  | currency:'EUR € '}} <br/>
+                    Only {{product.storage}} left in stock.</small>
+            </h2>
+
+            <button class="btn bgm-red btn-float waves-effect waves-effect" ng-click="addToBasket()"><i class="md md-add"></i></button>
+        </div>
+
+        <div class="card-body card-padding">
+            {{product.description}}
+        </div>
+    </div>
 </div>

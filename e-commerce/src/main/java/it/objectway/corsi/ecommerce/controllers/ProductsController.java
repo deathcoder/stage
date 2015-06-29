@@ -16,7 +16,7 @@ import java.util.List;
  * Created by stageusr2015 on 11/06/2015.
  */
 @Controller
-@RequestMapping(value = "/spring/")
+@RequestMapping(value = "/spring")
 public class ProductsController {
     /* annotation-driven dependency injection tutorial: */
     /* http://simplespringtutorial.com/annotations.html */
