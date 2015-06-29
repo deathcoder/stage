@@ -15,16 +15,16 @@ angular.module('owProduct')
       };
 
       $scope.initProduct= function(){
-        $scope.getProduct();
+        getProduct();
       };
 
-      $scope.getProducts = function () {
+      var getProducts = function () {
         ProductService.products.query(function (response) {
           $scope.products = response;
         });
       };
 
-      $scope.getProduct = function () {
+      var getProduct = function () {
         ProductService.product.get({id: $routeParams.id}, function (response) {
           $scope.product = response;
           console.log("prodotto", response);

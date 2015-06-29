@@ -13,7 +13,6 @@ angular.module('owProduct')
       return {
           products: $resource(prefix + "/products", {}, {}),
           product: $resource(prefix + "/product/:id", {}, {}),
-          basket: $resource(prefix + "/basket"),
-          test: $resource(prefix + "/test")
+          basket: $resource(prefix + "/basket")
       };
   });

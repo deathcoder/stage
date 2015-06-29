@@ -23,5 +23,5 @@
 
     <import resource="spring/spring-database.xml"/>
     <import resource="spring/spring-basket.xml"/>
-    <import resource="spring/spring-security.xml"/>
+    <!-- <import resource="spring/spring-security.xml"/> -->
 </beans>

@@ -28,8 +28,8 @@ angular
     'owBasket'
   ])
   .config(function ($routeProvider, $httpProvider) {
-/*
 
+/*
     $httpProvider.defaults.xsrfHeaderName = 'X-CSRF-TOKEN';
     $httpProvider.defaults.xsrfCookieName = 'csrftoken';
 */
@@ -68,6 +68,7 @@ angular
         redirectTo: '/'
       });
   });
+
 var debug = false;
 var mylog = function (message) {
   if(debug) {

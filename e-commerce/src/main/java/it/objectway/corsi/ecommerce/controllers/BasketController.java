@@ -12,9 +12,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Collection;
 
-/**
- * Created by stageusr2015 on 12/06/2015.
- */
 @Controller
 @RequestMapping(value = "/spring")
 public class BasketController {
