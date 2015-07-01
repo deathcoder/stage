@@ -13,7 +13,7 @@
 
     <filter-mapping>
         <filter-name>springSecurityFilterChain</filter-name>
-        <url-pattern>/*</url-pattern>
+        <url-pattern>/spring/api/*</url-pattern>
     </filter-mapping>
 
     <filter>
@@ -23,16 +23,8 @@
 
     <filter-mapping>
         <filter-name>springSecurityCSRFFilter</filter-name>
-        <url-pattern>/spring/app/*</url-pattern>
+        <url-pattern>/spring/api/*</url-pattern>
     </filter-mapping>
-
-    <listener>
-        <listener-class>it.objectway.corsi.ecommerce.listeners.deregisterListener</listener-class>
-    </listener>
-
-    <welcome-file-list>
-        <welcome-file>home</welcome-file>
-    </welcome-file-list>
 
     <servlet>
         <servlet-name>spring-web</servlet-name>

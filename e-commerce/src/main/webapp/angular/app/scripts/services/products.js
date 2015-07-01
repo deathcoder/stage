@@ -7,13 +7,12 @@
  * # AboutCtrl
  * Controller of the owEcommerceApp
  */
-angular.module('owProduct')
+angular.module('owProduct', ['ngResource'])
   .factory('ProductService', function ($resource) {
       var prefix = "/spring/api";
       return {
           products: $resource(prefix + "/products", {}, {}),
           product: $resource(prefix + "/product/:id", {}, {}),
-          basket: $resource(prefix + "/basket"),
-          test: $resource(prefix + "/test")
+          basket: $resource(prefix + "/basket", {}, {update: {method: "PUT"}})
       };
   });

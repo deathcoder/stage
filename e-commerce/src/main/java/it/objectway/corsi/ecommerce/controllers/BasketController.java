@@ -12,9 +12,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Collection;
 
-/**
- * Created by stageusr2015 on 12/06/2015.
- */
 @Controller
 @RequestMapping(value = "/spring")
 public class BasketController {
@@ -25,7 +22,6 @@ public class BasketController {
     private BasketManager basketManager;
 
     private static final LogManager logger = new LogManagerImpl(BasketController.class);
-
 
     @RequestMapping(value = "basket", method = RequestMethod.GET)
     public ModelAndView getBasketProducts() {
@@ -54,19 +50,18 @@ public class BasketController {
         return model;
     }
 
-    @RequestMapping(value = "api/basket", method = RequestMethod.POST)
+    @RequestMapping(value = "api/basket", method = RequestMethod.PUT)
     public @ResponseBody
-    Collection<BasketProduct> addJsonProduct(@RequestBody Product product) {
-        basketManager.add(product);
+    void updateJsonProduct(@RequestBody BasketProduct product) {
+        basketManager.add(product.getId(), product.getAmount());
         logger.debug("addProduct: basket(", basketManager.getBasket(), ")");
-        return basketManager.getBasket().values();
     }
 
-    @RequestMapping(value = "api/test", method = RequestMethod.POST)
+    @RequestMapping(value = "api/basket", method = RequestMethod.POST)
     public @ResponseBody
-    Collection<BasketProduct> addTest(@RequestBody String product) {
+    void addJsonProduct(@RequestBody Product product) {
+        basketManager.add(product);
         logger.debug("addProduct: basket(", basketManager.getBasket(), ")");
-        return basketManager.getBasket().values();
     }
 
     public BasketManager getBasketManager() {
@@ -77,25 +72,4 @@ public class BasketController {
         logger.trace("setBasketManager: start");
         this.basketManager = basketManager;
     }
-
-    /*@Configuration
-    *//*@Order(2147483640)*//*
-    protected static class SecurityConfiguration extends WebSecurityConfigurerAdapter {
-        @Override
-        protected void configure(HttpSecurity http) throws Exception {
-            http
-                    .httpBasic().and()
-                    .authorizeRequests()
-                    .antMatchers("/spring/app/index.html").permitAll().anyRequest()
-                    .authenticated().and()
-                    .addFilterAfter(new CsrfHeaderFilter(), CsrfFilter.class)
-                    .csrf().csrfTokenRepository(csrfTokenRepository());
-        }
-
-        private CsrfTokenRepository csrfTokenRepository() {
-            HttpSessionCsrfTokenRepository repository = new HttpSessionCsrfTokenRepository();
-            repository.setHeaderName("X-XSRF-TOKEN");
-            return repository;
-        }
-    }*/
 }

@@ -14,9 +14,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-/**
- * Created by stageusr2015 on 15/06/2015.
- */
 public class UserDetailsServiceImpl implements UserDetailsService {
     private UserDao userDao;
 

@@ -17,17 +17,23 @@
         <tr>
           <td>Name</td>
           <td>Price</td>
-          <td>Description</td>
+          <td ng-hide="isInBasket()">Description</td>
+          <td ng-show="isInBasket()">Amount</td>
           <td>Product detail</td>
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="product in products | filter:query | orderBy:name">
+        <tr ng-repeat="product in products | filter:query | orderBy:name" ng-hide="product.amount == 0">
             <td>{{product.name}}</td>
             <td>{{product.price | currency:'€'}}</td>
-            <td class="limit">
+            <td class="limit" ng-hide="isInBasket()">
               {{product.description}}
             </td>
+          <td ng-show="isInBasket()" class="form-group">
+              <div class="fg-line">
+                <input ng-change="updateBasket(product)" ng-model="product.amount" type="number" class="form-control input-lg" placeholder="Change Amount" value="{{product.amount}}" min="0">
+              </div>
+          </td>
           <td>
             <button class="btn btn-default btn-icon-text waves-effect"><i class="md md-more-vert"></i>
               <a ng-href="#/product/{{product.id}}">More</a>

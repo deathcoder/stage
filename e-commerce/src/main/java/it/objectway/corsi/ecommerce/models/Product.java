@@ -46,10 +46,10 @@ public class Product implements Serializable {
         return price;
     }
 
-    public void setPrice(String price) {
-        /* the recommended constructor is BigDecimal(String), not BigDecimal(double) - see javadoc */
+    /*public void setPrice(String price) {
+        *//* the recommended constructor is BigDecimal(String), not BigDecimal(double) - see javadoc *//*
         this.price = new BigDecimal(price);
-    }
+    }*/
 
     public long getStorage() {
         return storage;

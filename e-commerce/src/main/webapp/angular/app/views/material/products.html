@@ -1,0 +1,26 @@
+<md-card ng-init="initProducts()" flex-gt-sm="90" flex-gt-md="80" class="md-default-theme">
+  <md-card-content>
+    <h2>Our Products</h2>
+    <md-list>
+      <md-item ng-repeat="product in products | filter:search | orderBy:name" ng-hide="product.amount == 0">
+        <md-item-content>
+          <div class="md-tile-left inset" hide-sm>
+            <a ng-href="#/product/{{product.id}}"><user-avatar></user-avatar></a>
+          </div>
+            <div class="md-tile-content">
+              <h3>{{product.name}}</h3>
+              <h4>{{product.price}}</h4>
+              <p class="limit">
+                {{product.description}}
+              </p>
+            </div>
+        </md-item-content>
+        <md-divider md-inset hide-sm ng-if="!$last"></md-divider>
+        <md-divider hide-gt-sm ng-if="!$last"></md-divider>
+      </md-item>
+      <md-divider></md-divider>
+      <md-item layout class="inset">
+      </md-item>
+      </md-list>
+  </md-card-content>
+</md-card>
